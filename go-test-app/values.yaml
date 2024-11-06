@@ -1,0 +1,18 @@
+appName: go-test-app
+
+postgresql:
+  image: postgres
+  tag: latest
+  user: user
+  password: password
+  db: mydb
+  port: 5432
+
+job:
+  enabled: true
+
+goService:
+  image: go-test-app
+  tag: latest
+  port: 8080
+  serviceType: LoadBalancer

@@ -1,0 +1,15 @@
+from golang:1.23 as builder
+
+WORKDIR /src
+COPY . .
+
+RUN go mod tidy
+RUN go build -o go-test-app .
+
+FROM alphine:latest
+WORKDIR /root/
+
+COPY --from=builder /src/go-test-app .
+EXPOSE 8080
+
+CMD ["./go-test-app"]

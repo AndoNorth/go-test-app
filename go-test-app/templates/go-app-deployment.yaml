@@ -1,0 +1,20 @@
+# go-app-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-test-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-test-app
+  template:
+    metadata:
+      labels:
+        app: go-test-app
+    spec:
+      containers:
+        - name: go-test-app
+          image: "{{ .Values.goService.image }}:{{ .Values.goService.tag }}"
+          ports:
+            - containerPort: { { .Values.goService.port } }

@@ -1,0 +1,13 @@
+# go-app-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-test-app
+spec:
+  type: { { .Values.goService.serviceType } }
+  ports:
+    - port: { { .Values.goService.port } }
+      targetPort: { { .Values.goService.port } }
+      protocol: TCP
+  selector:
+    app: go-test-app
